@@ -1,36 +1,77 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+
+import { useEffect, useState } from 'react';
 import './App.css'
 
 function App() {
-  const [count, setCount] = useState(0)
+
+  const [showList, setShowList] = useState(false);
+  const [value, setValue] = useState("");
+  const [descriptionFound, setDescriptionFound] = useState("");
+
+  const commandList = [
+    { name: 'ls', description: 'lista o conteúdo de um diretório.' },
+    { name: 'cd', description: 'altera o diretório de trabalho.' },
+    { name: 'pwd', description: 'exibe o diretório atual de trabalho.' },
+    { name: 'mkdir', description: 'cria um novo diretório.' },
+    { name: 'rm', description: 'remove arquivos ou diretórios.' },
+  ]
+
+  const handleEnter = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      setShowList(true);
+    }
+
+    if (e.key !== "Enter") {
+      setShowList(false);
+    }
+
+
+  };
+
+  useEffect(() => {
+    if (value) {
+
+      const commandFound = commandList.find(
+        (cmd) => cmd.name.toLowerCase() === value.toLowerCase()
+      );
+      setDescriptionFound(commandFound ? commandFound.description : "não encontrado")
+      return commandFound
+    }
+  }, [value])
 
   return (
     <>
       <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+
       </div>
-      <h1>Vite + React</h1>
+      <h1>Dicionário de Comandos</h1>
       <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
         <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
+          Digite o comando a pesquisar:
         </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-      <h1 className="text-3xl font-bold underline">
-        Hello world!
-      </h1>
+        <input
+          type="text"
+          value={value}
+          onChange={(e) => setValue(e.target.value)}
+          onKeyDown={handleEnter}
+          list={showList ? "commands" : undefined}
+          placeholder="Digite algo e aperte Enter"
+        />
+
+        <datalist id="commands" >
+          {commandList.map((command: any) => {
+            return <option value={command.name} />
+          })}
+
+        </datalist>
+        <div className='flex text-center justify-center'>
+          <p>
+            {descriptionFound}
+          </p>
+        </div>
+
+      </div >
     </>
   )
 }
