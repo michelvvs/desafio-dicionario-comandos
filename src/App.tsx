@@ -36,7 +36,6 @@ function App() {
         (cmd) => cmd.name.toLowerCase() === value.toLowerCase()
       );
       setDescriptionFound(commandFound ? commandFound.description : "não encontrado")
-      return commandFound
     }
   }, [value])
 
