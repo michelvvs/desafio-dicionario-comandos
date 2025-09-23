@@ -7,6 +7,7 @@ import ErrorMessage from './components/ErrorMessage'
 import { useCommandStore } from './stores/CommandStore'
 import { useKeyPressStore } from './stores/KeyPressStore'
 import { isInvalidCommand } from './utils/validation'
+import Footer from './components/Footer'
 
 function App() {
   const [value, setValue] = useState('')
@@ -27,6 +28,7 @@ function App() {
 
         {isInvalidCommand(value) && <ErrorMessage message="Comando inválido" />}
       </Box>
+      <Footer />
     </>
   )
 }
