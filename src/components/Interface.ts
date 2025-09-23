@@ -1,4 +1,6 @@
+import type { Dispatch, SetStateAction } from "react"
+
 export interface CommandInputProps {
   inputValue: string
-  callbackFunction: () => void
+  callbackFunction: Dispatch<SetStateAction<string>>
 }
