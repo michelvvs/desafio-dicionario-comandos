@@ -1,4 +1,6 @@
 # Teste Grendene: Michel Victor
 
-Este repositório é um teste para a empresa Grendene, para a vaga de Desenvolvedor Fullstack.
+Este repositório é um deasfio de dicionários de comandos em ReactJS e Vite.
+
+Controle de estados: Zustand
 
