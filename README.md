@@ -1,4 +1,4 @@
-# Teste Grendene: Michel Victor
+# Desafio dicionário de comandos: Michel Victor
 
 Este repositório é um deasfio de dicionários de comandos em ReactJS e Vite.
 
